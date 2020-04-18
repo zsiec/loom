@@ -1,6 +1,6 @@
 package transcode
 
-type Service interface {
+type Svc interface {
 	CreateJob(CreateJobRequest) (string, error)
 	JobStatus(string) (JobStatusResponse, error)
 }
