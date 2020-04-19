@@ -11,12 +11,12 @@ import (
 
 const transcodesPath = "/transcodes"
 
-type transcodesHandler struct {
+type transcodeHandler struct {
 	Svc    transcode.Svc
 	Logger zerolog.Logger
 }
 
-func (h transcodesHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h transcodeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.ensure()
 
 	switch r.Method {
@@ -32,7 +32,7 @@ func (h transcodesHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h transcodesHandler) createTranscode(w http.ResponseWriter, r *http.Request) error {
+func (h transcodeHandler) createTranscode(w http.ResponseWriter, r *http.Request) error {
 	var req transcode.CreateRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		return sendErr(fmt.Errorf("parsing request: %v", err), http.StatusBadRequest, w)
@@ -54,7 +54,7 @@ func (h transcodesHandler) createTranscode(w http.ResponseWriter, r *http.Reques
 	return nil
 }
 
-func (h *transcodesHandler) ensure() {
+func (h *transcodeHandler) ensure() {
 	if h.Svc == nil {
 		h.Svc = transcode.ChunkedSvc{}
 	}
