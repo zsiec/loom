@@ -1,31 +1,31 @@
 package transcode
 
 type CreateRequest struct {
-	Source      CreateSource      `json:"source"`
-	Destination CreateDestination `json:"destination"`
-	Outputs     []CreateOutput    `json:"outputs"`
+	Source      Source      `json:"source"`
+	Destination Destination `json:"destination"`
+	Outputs     []OutputCfg `json:"outputs"`
 }
 
-type CreateSource struct {
+type Source struct {
 	URL string `json:"url"`
 }
 
-type CreateDestination struct {
+type Destination struct {
 	BaseURL string `json:"baseURL"`
 }
 
-type CreateOutput struct {
-	Name  string        `json:"name"`
-	Video *CreateVideo  `json:"video,omitempty"`
-	Audio []CreateAudio `json:"audio,omitempty"`
+type OutputCfg struct {
+	Name  string     `json:"name"`
+	Video *VideoCfg  `json:"video,omitempty"`
+	Audio []AudioCfg `json:"audio,omitempty"`
 }
 
-type CreateVideo struct {
+type VideoCfg struct {
 	Codec        *VideoCodec   `json:"codec,omitempty"`
 	H264Settings *H264Settings `json:"h264_settings,omitempty"`
 }
 
-type CreateAudio struct {
+type AudioCfg struct {
 	Codec       *AudioCodec  `json:"codec,omitempty"`
 	AACSettings *AACSettings `json:"aac_settings,omitempty"`
 	Source      *AudioSource `json:"source,omitempty"`
