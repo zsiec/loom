@@ -22,7 +22,7 @@ func (h transcodesHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodPost:
 		if err := h.createTranscode(w, r); err != nil {
-			h.Logger.Error().Msgf("create transcode: %v", err)
+			h.Logger.Err(err).Msg("creating transcode")
 		}
 	default:
 		err := sendErr(fmt.Errorf("jobs: method %s not supported", r.Method), http.StatusBadRequest, w)

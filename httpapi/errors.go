@@ -2,6 +2,7 @@ package httpapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,5 +13,8 @@ type errResponse struct {
 
 func sendErr(e error, code int, w http.ResponseWriter) error {
 	w.WriteHeader(code)
-	return json.NewEncoder(w).Encode(errResponse{Error: e.Error(), Code: code})
+	if err := json.NewEncoder(w).Encode(errResponse{Error: e.Error(), Code: code}); err != nil {
+		return fmt.Errorf("encoding err response for %v: %w", err, e)
+	}
+	return e
 }
