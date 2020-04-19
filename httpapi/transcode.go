@@ -43,11 +43,14 @@ func (h transcodesHandler) createTranscode(w http.ResponseWriter, r *http.Reques
 		return sendErr(fmt.Errorf("creating transcode: %v", err), http.StatusBadRequest, w)
 	}
 
+	w.Header().Set(contentTypeHeaderKey, contentTypeJSON)
+	w.WriteHeader(http.StatusCreated)
+
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		return sendErr(fmt.Errorf("encoding response: %v", err), http.StatusInternalServerError, w)
+		h.Logger.Err(err).Msg("creating transcode: encoding response")
+		return err
 	}
 
-	w.WriteHeader(http.StatusOK)
 	return nil
 }
 

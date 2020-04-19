@@ -12,6 +12,12 @@ import (
 	"github.com/zsiec/loom/transcode"
 )
 
+const (
+	contentTypeHeaderKey = "Content-Type"
+
+	contentTypeJSON = "application/json"
+)
+
 // Timeouts hold values for server timeout configuration
 type Timeouts struct {
 	Read, Write, Idle time.Duration
