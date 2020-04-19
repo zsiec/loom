@@ -3,14 +3,14 @@ package transcode
 const VideoCodecH264 VideoCodec = "h264"
 
 type H264Settings struct {
-	RateControl   *H264RateControl   `json:"rateControl"`
-	CBRSettings   *H264CBRSettings   `json:"cbrSettings,omitempty"`
-	GOPSize       *float64           `json:"gopSize,omitempty"`
-	GOPSizeUnits  *GOPSizeUnits      `json:"gopSizeUnits,omitempty"`
-	CodecProfile  *H264CodecProfile  `json:"codecProfile,omitempty"`
-	CodecLevel    *H264CodecLevel    `json:"codecLevel,omitempty"`
-	InterlaceMode *H264InterlaceMode `json:"interlaceMode,omitempty"`
-	FrameRate     *float64           `json:"frameRate,omitempty"`
+	RateControl   *H264RateControl   `json:"rate_control"`
+	CBRSettings   *H264CBRSettings   `json:"cbr_settings,omitempty"`
+	GOPSize       *float64           `json:"gop_size,omitempty"`
+	GOPSizeUnits  *GOPSizeUnits      `json:"gop_size_units,omitempty"`
+	CodecProfile  *H264CodecProfile  `json:"codec_profile,omitempty"`
+	CodecLevel    *H264CodecLevel    `json:"codec_level,omitempty"`
+	InterlaceMode *H264InterlaceMode `json:"interlace_mode,omitempty"`
+	FrameRate     *float64           `json:"frame_rate,omitempty"`
 }
 
 type H264RateControl string

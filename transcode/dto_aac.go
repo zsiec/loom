@@ -4,5 +4,5 @@ const AudioCodecAAC AudioCodec = "aac"
 
 type AACSettings struct {
 	Bitrate    *int64 `json:"bitrate,omitempty"`
-	SampleRate *int64 `json:"sampleRate,omitempty"`
+	SampleRate *int64 `json:"sample_rate,omitempty"`
 }

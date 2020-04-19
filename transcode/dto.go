@@ -22,13 +22,13 @@ type CreateOutput struct {
 
 type CreateVideo struct {
 	Codec        *VideoCodec   `json:"codec,omitempty"`
-	H264Settings *H264Settings `json:"h264Settings,omitempty"`
+	H264Settings *H264Settings `json:"h264_settings,omitempty"`
 }
 
 type CreateAudio struct {
 	Codec       *AudioCodec  `json:"codec,omitempty"`
-	AACSettings *AACSettings `json:"AACSettings,omitempty"`
-	Source      *AudioSource `json:"audioSource,omitempty"`
+	AACSettings *AACSettings `json:"aac_settings,omitempty"`
+	Source      *AudioSource `json:"source,omitempty"`
 }
 
 type (
@@ -43,7 +43,7 @@ const (
 )
 
 type AudioSource struct {
-	SourceIndex int   `json:"sourceIndex"`
+	SourceIndex int   `json:"source_index"`
 	Tracks      []int `json:"tracks"`
 }
 
