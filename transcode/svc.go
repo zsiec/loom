@@ -1,6 +1,8 @@
 package transcode
 
+import "context"
+
 type Svc interface {
-	Create(CreateRequest) (CreateResponse, error)
-	Status(string) (StatusResponse, error)
+	Create(context.Context, CreateRequest) (CreateResponse, error)
+	Status(context.Context, string) (StatusResponse, error)
 }

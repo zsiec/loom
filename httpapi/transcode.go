@@ -38,7 +38,7 @@ func (h transcodesHandler) createTranscode(w http.ResponseWriter, r *http.Reques
 		return sendErr(fmt.Errorf("parsing request: %v", err), http.StatusBadRequest, w)
 	}
 
-	resp, err := h.Svc.Create(req)
+	resp, err := h.Svc.Create(r.Context(), req)
 	if err != nil {
 		return sendErr(fmt.Errorf("creating transcode: %v", err), http.StatusBadRequest, w)
 	}

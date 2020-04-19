@@ -1,6 +1,7 @@
 package analyze
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/cbsinteractive/mediainfo"
@@ -8,8 +9,8 @@ import (
 
 type MediainfoSvc struct{}
 
-func (s MediainfoSvc) Analyze(u string) (Info, error) {
-	mi, err := mediainfo.Analyze(u)
+func (s MediainfoSvc) Analyze(ctx context.Context, u string) (Info, error) {
+	mi, err := mediainfo.AnalyzeWithContext(ctx, u)
 	if err != nil {
 		return Info{}, fmt.Errorf("mediainfo: %w", err)
 	}

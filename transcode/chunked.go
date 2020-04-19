@@ -1,6 +1,7 @@
 package transcode
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/rs/zerolog"
@@ -12,12 +13,12 @@ type ChunkedSvc struct {
 	Logger   zerolog.Logger
 }
 
-func (s ChunkedSvc) Create(req CreateRequest) (CreateResponse, error) {
+func (s ChunkedSvc) Create(ctx context.Context, req CreateRequest) (CreateResponse, error) {
 	s.ensure()
 
 	src := req.Source.URL
 
-	info, err := s.Analyzer.Analyze(src)
+	info, err := s.Analyzer.Analyze(ctx, src)
 	if err != nil {
 		return CreateResponse{}, fmt.Errorf("analyzing source '%s': %w", src, err)
 	}
@@ -32,7 +33,7 @@ func (s ChunkedSvc) Create(req CreateRequest) (CreateResponse, error) {
 	}, nil
 }
 
-func (s ChunkedSvc) Status(string) (StatusResponse, error) {
+func (s ChunkedSvc) Status(context.Context, string) (StatusResponse, error) {
 	return StatusResponse{}, nil
 }
 

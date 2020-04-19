@@ -1,5 +1,5 @@
-github.com/cbsinteractive/mediainfo v0.0.6 h1:CikDgWdTKR3d3s7rZXJWEzL7oh2HvzgoEp4cj63VtGI=
-github.com/cbsinteractive/mediainfo v0.0.6/go.mod h1:o5noHbdxgLHmUFrUEG8Tb1ZeQpSfw4+hFTdYsl7Cefo=
+github.com/cbsinteractive/mediainfo v0.0.7 h1:yig/2h4AbtkIXP+cV6Lo6TugeVf5w/bWLUCvQjrK3DA=
+github.com/cbsinteractive/mediainfo v0.0.7/go.mod h1:o5noHbdxgLHmUFrUEG8Tb1ZeQpSfw4+hFTdYsl7Cefo=
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/justinas/alice v1.2.0 h1:+MHSA/vccVCF4Uq37S42jwlkvI2Xzl7zTPCN5BnZNVo=
 github.com/justinas/alice v1.2.0/go.mod h1:fN5HRH/reO/zrUflLfTN43t3vXvKzvZIENsNEe7i7qA=

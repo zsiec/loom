@@ -1,5 +1,7 @@
 package analyze
 
+import "context"
+
 type Svc interface {
-	Analyze(url string) (Info, error)
+	Analyze(ctx context.Context, url string) (Info, error)
 }
