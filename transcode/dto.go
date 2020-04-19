@@ -1,31 +1,31 @@
 package transcode
 
-type CreateJobRequest struct {
-	Source      CreateJobSource      `json:"source"`
-	Destination CreateJobDestination `json:"destination"`
-	Outputs     []CreateJobOutput    `json:"outputs"`
+type CreateRequest struct {
+	Source      CreateSource      `json:"source"`
+	Destination CreateDestination `json:"destination"`
+	Outputs     []CreateOutput    `json:"outputs"`
 }
 
-type CreateJobSource struct {
+type CreateSource struct {
 	URL string `json:"url"`
 }
 
-type CreateJobDestination struct {
+type CreateDestination struct {
 	BaseURL string `json:"baseURL"`
 }
 
-type CreateJobOutput struct {
-	Name  string           `json:"name"`
-	Video *CreateJobVideo  `json:"video,omitempty"`
-	Audio []CreateJobAudio `json:"audio,omitempty"`
+type CreateOutput struct {
+	Name  string        `json:"name"`
+	Video *CreateVideo  `json:"video,omitempty"`
+	Audio []CreateAudio `json:"audio,omitempty"`
 }
 
-type CreateJobVideo struct {
+type CreateVideo struct {
 	Codec        *VideoCodec   `json:"codec,omitempty"`
 	H264Settings *H264Settings `json:"h264Settings,omitempty"`
 }
 
-type CreateJobAudio struct {
+type CreateAudio struct {
 	Codec       *AudioCodec  `json:"codec,omitempty"`
 	AACSettings *AACSettings `json:"AACSettings,omitempty"`
 	Source      *AudioSource `json:"audioSource,omitempty"`
@@ -47,22 +47,27 @@ type AudioSource struct {
 	Tracks      []int `json:"tracks"`
 }
 
-type JobStatusResponse struct {
-	ID      string            `json:"id"`
-	Status  JobStatus         `json:"status"`
-	Outputs []JobStatusOutput `json:"outputs,omitempty"`
+type CreateResponse struct {
+	ID     string `json:"id"`
+	Status Status `json:"status"`
 }
 
-type JobStatus string
+type StatusResponse struct {
+	ID      string         `json:"id"`
+	Status  Status         `json:"status"`
+	Outputs []StatusOutput `json:"outputs,omitempty"`
+}
+
+type Status string
 
 const (
-	JobStatusQueued   JobStatus = "queued"
-	JobStatusStarted  JobStatus = "started"
-	JobStatusFinished JobStatus = "finished"
-	JobStatusErrored  JobStatus = "errored"
-	JobStatusCanceled JobStatus = "canceled"
+	StatusQueued   Status = "queued"
+	StatusStarted  Status = "started"
+	StatusFinished Status = "finished"
+	StatusErrored  Status = "errored"
+	StatusCanceled Status = "canceled"
 )
 
-type JobStatusOutput struct {
+type StatusOutput struct {
 	URL string `json:"url"`
 }

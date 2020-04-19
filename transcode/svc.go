@@ -1,6 +1,6 @@
 package transcode
 
 type Svc interface {
-	CreateJob(CreateJobRequest) (string, error)
-	JobStatus(string) (JobStatusResponse, error)
+	Create(CreateRequest) (CreateResponse, error)
+	Status(string) (StatusResponse, error)
 }

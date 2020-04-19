@@ -8,7 +8,7 @@ import (
 
 type MediainfoSvc struct{}
 
-func (s *MediainfoSvc) Analyze(u string) (Info, error) {
+func (s MediainfoSvc) Analyze(u string) (Info, error) {
 	mi, err := mediainfo.Analyze(u)
 	if err != nil {
 		return Info{}, fmt.Errorf("mediainfo: %w", err)
@@ -23,7 +23,7 @@ func (s *MediainfoSvc) Analyze(u string) (Info, error) {
 	}, nil
 }
 
-func (s *MediainfoSvc) videoTracksFrom(tracks []mediainfo.VideoTrack) []VideoTrack {
+func (s MediainfoSvc) videoTracksFrom(tracks []mediainfo.VideoTrack) []VideoTrack {
 	mappedTracks := make([]VideoTrack, len(tracks))
 	for i, t := range tracks {
 		mappedTracks[i] = VideoTrack{
@@ -55,7 +55,7 @@ func (s *MediainfoSvc) videoTracksFrom(tracks []mediainfo.VideoTrack) []VideoTra
 	return mappedTracks
 }
 
-func (s *MediainfoSvc) audioTracksFrom(tracks []mediainfo.AudioTrack) []AudioTrack {
+func (s MediainfoSvc) audioTracksFrom(tracks []mediainfo.AudioTrack) []AudioTrack {
 	mappedTracks := make([]AudioTrack, len(tracks))
 	for i, t := range tracks {
 		mappedTracks[i] = AudioTrack{

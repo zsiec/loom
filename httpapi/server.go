@@ -8,6 +8,8 @@ import (
 	"github.com/justinas/alice"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/hlog"
+	"github.com/zsiec/loom/analyze"
+	"github.com/zsiec/loom/transcode"
 )
 
 // Timeouts hold values for server timeout configuration
@@ -27,7 +29,14 @@ func NewServer(cfg Config) (*http.Server, error) {
 
 	middleware := setupMiddleware(cfg.Logger)
 
-	mux.Handle(healthcheckPath, middleware.Then(&healthcheckHandler{}))
+	mux.Handle(healthcheckPath, middleware.Then(healthcheckHandler{}))
+
+	mux.Handle(transcodesPath, middleware.Then(transcodesHandler{
+		Logger: cfg.Logger,
+		Svc: transcode.ChunkedSvc{
+			Analyzer: analyze.MediainfoSvc{}, Logger: cfg.Logger,
+		},
+	}))
 
 	return &http.Server{
 		Handler:      mux,

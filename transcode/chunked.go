@@ -12,19 +12,28 @@ type ChunkedSvc struct {
 	Logger   zerolog.Logger
 }
 
-func (s *ChunkedSvc) CreateJob(req CreateJobRequest) (string, error) {
+func (s ChunkedSvc) Create(req CreateRequest) (CreateResponse, error) {
 	s.ensure()
 
 	src := req.Source.URL
 
 	info, err := s.Analyzer.Analyze(src)
 	if err != nil {
-		return "", fmt.Errorf("analyzing source %q: %w", src, err)
+		return CreateResponse{}, fmt.Errorf("analyzing source '%s': %w", src, err)
 	}
 
 	s.Logger.Info().Msgf("analyzed source %q: %+v", src, info)
 
-	return "", nil //todo
+	// todo
+
+	return CreateResponse{
+		ID:     "todo",
+		Status: StatusQueued,
+	}, nil
+}
+
+func (s ChunkedSvc) Status(string) (StatusResponse, error) {
+	return StatusResponse{}, nil
 }
 
 func (s *ChunkedSvc) ensure() {
