@@ -27,7 +27,7 @@ func (h transcodesHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	default:
 		err := sendErr(fmt.Errorf("jobs: method %s not supported", r.Method), http.StatusBadRequest, w)
 		if err != nil {
-			h.Logger.Error().Msgf("sending err response: %v", err)
+			h.Logger.Err(err).Msg("sending err response")
 		}
 	}
 }

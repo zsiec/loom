@@ -66,7 +66,7 @@ func main() {
 	go func() {
 		logger.Info().Msgf("starting server listening on port %d", cfg.Port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Error().Msgf("http server: %v", err)
+			logger.Err(err).Msg("http server")
 		}
 		close(srvDone)
 	}()
@@ -82,7 +82,7 @@ func main() {
 	server.SetKeepAlivesEnabled(false)
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	if err := server.Shutdown(ctx); err != nil {
-		logger.Error().Msgf("shutting down server: %v", err)
+		logger.Err(err).Msg("shutting down server")
 	}
 	cancel()
 	logger.Info().Msg("server shut down")
