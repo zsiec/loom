@@ -8,7 +8,6 @@ import (
 	"github.com/justinas/alice"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/hlog"
-	"github.com/zsiec/loom/analyze"
 	"github.com/zsiec/loom/transcode"
 )
 
@@ -37,11 +36,9 @@ func NewServer(cfg Config) (*http.Server, error) {
 
 	mux.Handle(healthcheckPath, middleware.Then(healthcheckHandler{}))
 
-	mux.Handle(transcodesPath, middleware.Then(transcodesHandler{
+	mux.Handle(transcodesPath, middleware.Then(transcodeHandler{
 		Logger: cfg.Logger,
-		Svc: transcode.ChunkedSvc{
-			Analyzer: analyze.MediainfoSvc{}, Logger: cfg.Logger,
-		},
+		Svc:    transcode.ChunkedSvc{Logger: cfg.Logger},
 	}))
 
 	return &http.Server{
